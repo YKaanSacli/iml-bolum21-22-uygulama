@@ -850,13 +850,13 @@ elif st.session_state.aktif_bolum == "Bölüm 21: Özellik Etkileşimi":
             val_h = float(sonuc_h['H'])
 
             st.markdown(f"""
-            * **Model Denklemi:** $y = {a_katsayi:.1f}\\cdot x_1 + {b_katsayi:.1f}\\cdot x_2 + {c_katsayi:.1f}\\cdot (x_1\\cdot x_2)$
-            * **1. Adım ($PD_1$ Varyansı):** $\\sum PD_1(x_1^{(i)})^2 = {val_pd_j_sum:.4f}$
-            * **2. Adım ($PD_2$ Varyansı):** $\\sum PD_2(x_2^{(i)})^2 = {val_pd_k_sum:.4f}$
-            * **3. Adım (Payda - Toplam 2B PD Kareler Toplamı):** $\\sum PD_{{12}}(x_1^{(i)}, x_2^{(i)})^2 = {val_payda:.4f}$
-            * **4. Adım (Pay - Etkileşim Farkının Kareler Toplamı):** $\\sum [PD_{{12}} - PD_1 - PD_2]^2 = {val_pay:.4f}$
-            * **5. Adım (Oran ve Karekök):** $H_{{12}}^2 = \\frac{{{val_pay:.4f}}}{{{val_payda:.4f}}} = {val_h2:.4f} \\implies \\mathbf{{H_{{12}} = {val_h:.4f}}}$
-            """)
+        * **Model Denklemi:** $y = {a_katsayi:.1f}\\cdot x_1 + {b_katsayi:.1f}\\cdot x_2 + {c_katsayi:.1f}\\cdot (x_1\\cdot x_2)$
+        * **1. Adım ($PD_1$ Varyansı):** $\\sum PD_1(x_1^{{(i)}})^2 = {val_pd_j_sum:.4f}$
+        * **2. Adım ($PD_2$ Varyansı):** $\\sum PD_2(x_2^{{(i)}})^2 = {val_pd_k_sum:.4f}$
+        * **3. Adım (Payda - Toplam 2B PD Kareler Toplamı):** $\\sum PD_{{12}}(x_1^{{(i)}}, x_2^{{(i)}})^2 = {val_payda:.4f}$
+        * **4. Adım (Pay - Etkileşim Farkının Kareler Toplamı):** $\\sum [PD_{{12}} - PD_1 - PD_2]^2 = {val_pay:.4f}$
+        * **5. Adım (Oran ve Karekök):** $H_{{12}}^2 = \\frac{{{val_pay:.4f}}}{{{val_payda:.4f}}} = {val_h2:.4f} \\implies \\mathbf{{H_{{12}} = {val_h:.4f}}}$
+        """)
             ilk5_df = pd.DataFrame({
                 "x₁": X_oyuncak[:5, 0],
                 "x₂": X_oyuncak[:5, 1],
