@@ -840,13 +840,22 @@ elif st.session_state.aktif_bolum == "Bölüm 21: Özellik Etkileşimi":
 
         with g2_col2:
             st.markdown("##### 🔍 Adım Adım Sayısal Hesap Özeti")
+            
+            # Değerleri f-string dışarısında güvenle hesaplayalım
+            val_pd_j_sum = float(np.sum(sonuc_h['pd_j']**2))
+            val_pd_k_sum = float(np.sum(sonuc_h['pd_k']**2))
+            val_payda = float(sonuc_h['payda'])
+            val_pay = float(sonuc_h['pay'])
+            val_h2 = float(sonuc_h['H2'])
+            val_h = float(sonuc_h['H'])
+
             st.markdown(f"""
             * **Model Denklemi:** $y = {a_katsayi:.1f}\\cdot x_1 + {b_katsayi:.1f}\\cdot x_2 + {c_katsayi:.1f}\\cdot (x_1\\cdot x_2)$
-            * **1. Adım ($PD_1$ Varyansı):** $\\sum PD_1(x_1^{(i)})^2 = {np.sum(sonuc_h['pd_j']**2):.4f}$
-            * **2. Adım ($PD_2$ Varyansı):** $\\sum PD_2(x_2^{(i)})^2 = {np.sum(sonuc_h['pd_k']**2):.4f}$
-            * **3. Adım (Payda - Toplam 2B PD Kareler Toplamı):** $\\sum PD_{{12}}(x_1^{(i)}, x_2^{(i)})^2 = {sonuc_h['payda']:.4f}$
-            * **4. Adım (Pay - Etkileşim Farkının Kareler Toplamı):** $\\sum [PD_{{12}} - PD_1 - PD_2]^2 = {sonuc_h['pay']:.4f}$
-            * **5. Adım (Oran ve Karekök):** $H_{{12}}^2 = \\frac{{{sonuc_h['pay']:.4f}}}{{{sonuc_h['payda']:.4f}}} = {sonuc_h['H2']:.4f} \\implies \\mathbf{{H_{{12}} = {sonuc_h['H']:.4f}}}$
+            * **1. Adım ($PD_1$ Varyansı):** $\\sum PD_1(x_1^{(i)})^2 = {val_pd_j_sum:.4f}$
+            * **2. Adım ($PD_2$ Varyansı):** $\\sum PD_2(x_2^{(i)})^2 = {val_pd_k_sum:.4f}$
+            * **3. Adım (Payda - Toplam 2B PD Kareler Toplamı):** $\\sum PD_{{12}}(x_1^{(i)}, x_2^{(i)})^2 = {val_payda:.4f}$
+            * **4. Adım (Pay - Etkileşim Farkının Kareler Toplamı):** $\\sum [PD_{{12}} - PD_1 - PD_2]^2 = {val_pay:.4f}$
+            * **5. Adım (Oran ve Karekök):** $H_{{12}}^2 = \\frac{{{val_pay:.4f}}}{{{val_payda:.4f}}} = {val_h2:.4f} \\implies \\mathbf{{H_{{12}} = {val_h:.4f}}}$
             """)
             ilk5_df = pd.DataFrame({
                 "x₁": X_oyuncak[:5, 0],
